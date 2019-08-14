@@ -1,3 +1,5 @@
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
 <div class="wrapper wrapper-content">
   <div class="row">
     <div class="col-md-12">
@@ -24,9 +26,9 @@
            <div class="form-group">
             <label class="col-sm-4 control-label">Inline checkboxes</label>
             <div class="col-md-5 col-sm-5">
-             <input type="checkbox"  id="u"> Unscheduled</label> <label class="checkbox-inline">
+             <input type="checkbox" onclick="uy()"  id="u"> Unscheduled</label> <label class="checkbox-inline">
               &nbsp;
-              <input type="checkbox"  id="s">Scheduled </label> <label class="checkbox-inline">
+              <input type="checkbox" onclick="cuy()" id="s">Scheduled </label> <label class="checkbox-inline">
               </div>
 
             </div>    
@@ -88,25 +90,16 @@
         </div>
       </div>
       <div class="ibox-content inspinia-timeline table-responsive" id="result">
-       <table id="table_pareto" class="table table-bordered table-striped table-hovered"></table>
+      <div class="table-responsive">
+         <table id="table_pareto" class="table table-bordered table-striped table-hovered"></table>
+      </div>
      </div>
    </div>
  </div>
 </div>
 </div>
 </div>
-
-
-
-
 <script>
-  $('#u').on('click', function () {
-    $('#u').val('u');
-  }); 
-  $('#s').on('click', function () {
-    $('#s').val('s');
-  });
-
   $('#display_pareto').on('click', function () {
    if ($.fn.dataTable.isDataTable('#table_pareto')) {
     var table = $("#table_pareto").DataTable();
@@ -118,12 +111,13 @@
   var actype  =  $('#actype').val();
   var date_to =  $('#date_to').val();
   var date_from = $('#date_from').val();
+  var u = $('#u').val();
+  var s = $('#s').val();
   if (date_to == '' || date_from == '') {
     alert('Please select Date From and Date To !');
     return false;
   }
-  var s = $('#s').val();
-  var u = $('#u').val();
+
   var pencarian_hasil = '<thead id ="head_cek">' +
   '<th class="text-center">No</th>' +
   '<th class="text-center">Code</th>' +
@@ -148,6 +142,8 @@
             "actype": actype,
             "date_to": date_to,
             "date_from": date_from,
+            "u" : u,
+            "s" : s
           },
           complete: function (res) {
            var jml =  res.responseJSON.jumlah; 
@@ -996,6 +992,23 @@
 
     );
 });
+
+function uy(){
+  var u =  $('#u').val();
+  if (u != 'U') {
+     $('#u').val('U');
+  } else {
+      $('#u').val('');
+  }
+}
+function cuy(){
+  var s =  $('#s').val();
+  if (s != 'S') {
+     $('#s').val('S');
+  } else {
+      $('#s').val('');
+  }
+}
 </script>
 
 

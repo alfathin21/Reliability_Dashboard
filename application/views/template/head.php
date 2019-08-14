@@ -22,6 +22,5 @@
     <script src="<?= base_url()?>assets/ckeditor/ckeditor.js"></script>
     <link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" rel="stylesheet">
   <script src="<?= base_url('assets/js/chart.js') ?>"></script>
-<script src="https://code.highcharts.com/modules/data.js"></script>
-<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
 </head>

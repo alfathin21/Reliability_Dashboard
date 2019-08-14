@@ -40,9 +40,29 @@ class PComponent extends CI_Controller {
 		else{
 			$DateEnd = "";
 		}
+
+		if (!empty($_POST["s"]) && $_POST['s'] == 'S' && !empty($_POST["u"]) && $_POST['u'] == 'U') {
+				$s = $_POST["s"];
+				$u = $_POST["u"];
+				$s_jadi = "'".$s."'";
+				$u_jadi = "'".$u."'";;
+				$data  = $s_jadi.','.$u_jadi;
+				$where_remcode = "AND RemCode IN ($data)";
+		}
+		else if(!empty($_POST["u"]) && $_POST['u'] == 'U'){
+			$data = "'%".$_POST["u"]."%'";
+			$where_remcode = "AND RemCode LIKE".$data;
+		} else if (!empty($_POST["s"]) && $_POST['s'] == 'S') {
+			$data = "'%".$_POST["s"]."%'";
+			$where_remcode = "AND RemCode LIKE".$data;
+		} 
+		else {
+			$where_remcode = "";
+		}
+
 		 $sql_graph_comp = "SELECT PartNo, PartName, COUNT(PartNo) AS number_of_part
-          FROM tblcompremoval WHERE DateRem BETWEEN '".$DateStart."' AND '".$DateEnd."' ".$where_actype."GROUP BY PartNo ORDER BY number_of_part DESC LIMIT 10";
-         
+          FROM tblcompremoval WHERE DateRem BETWEEN '".$DateStart."' AND '".$DateEnd."'".$where_actype."".$where_remcode." GROUP BY PartNo ORDER BY number_of_part DESC LIMIT 10";
+       
 
          $result = $this->db->query($sql_graph_comp)->result_array();
          $jumlah = count($result);

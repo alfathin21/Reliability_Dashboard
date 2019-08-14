@@ -6,7 +6,8 @@
                     <!-- menu nama admin -->
                     <li class="nav-header">
                         <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg" width="65px" />
+                          <!--   <img alt="image" class="img-circle" src="img/profile_small.jpg" width="65px" /> -->
+                           <img alt="image" style="border: 1px solid white; box-shadow: 1px 1px 9px rgba(0,0,0,0.4);" class="img-circle" src="<?= base_url()?>assets/logo/user.png" width="63" />
                         </span>
                         <a class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
